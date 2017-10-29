@@ -2,6 +2,7 @@ package com.lulu.expense.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @Author: Milo Ting
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @ModifiedBy:
  */
 @Controller
-@RequestMapping("/expense")
+@RequestMapping(value = "/expense",method = RequestMethod.GET)
 public class LiveController {
     @RequestMapping("/isLive")
     public String isLive(){
