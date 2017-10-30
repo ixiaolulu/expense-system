@@ -145,7 +145,7 @@
                 <version>7.1.5.v20100705</version>
                 <configuration>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
+                    <!--<webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>-->
                 </configuration>
             </plugin>
 
