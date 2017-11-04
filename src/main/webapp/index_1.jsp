@@ -11,7 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-   <h1>Hello ExpenseSystem!</h1>
+    <form action="/testController" method="post">
+    <input name="name">
+    return:${name}
+    <input value="提交" type="submit">
 </form>
 </body>
 </html>

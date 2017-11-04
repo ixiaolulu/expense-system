@@ -139,15 +139,15 @@
     <build>
         <finalName>expense</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.1.5.v20100705</version>
-                <configuration>
-                    <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <!--<webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>-->
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.mortbay.jetty</groupId>-->
+                <!--<artifactId>jetty-maven-plugin</artifactId>-->
+                <!--<version>7.1.5.v20100705</version>-->
+                <!--<configuration>-->
+                    <!--<scanIntervalSeconds>1</scanIntervalSeconds>-->
+                    <!--&lt;!&ndash;<webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>&ndash;&gt;-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
