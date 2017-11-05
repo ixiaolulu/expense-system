@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
  * @Date: 2017/11/4 20:09
  * @ModifiedBy:
  */
-public interface AdminDao {
+public interface AdminDao{
     /**
      * 通过code获取管理员信息
      *
      * @return
      */
-    Admin getByCode();
+    Admin getByCode(String code);
 }

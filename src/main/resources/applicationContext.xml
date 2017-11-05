@@ -12,5 +12,51 @@
 
     <context:annotation-config />
 
+    <!-- 将多个配置文件读取到容器中，交给Spring管理 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--数据源 BasicDataSource-->
+   <!--
+    1，spring自带数据源DriverManagerDataSource
+    2，DBCP数据源BasicDataSource DBCP的配置依赖于2个jar包commons-dbcp.jar，commons-pool.jar。
+    3，C3P0数据源C3P0 ComboPooledDataSource 是一个开放源代码的JDBC数据源实现项目，C3P0依赖于jar包c3p0.jar。
+    4，JNDI数据源JndiObjectFactoryBean， 如果应用配置在高性能的应用服务器（如WebLogic或Websphere,tomcat等）上，我们可能更希望使用应用服务器本身提供的数据源。应用服务器的数据源
+    使用JNDI开放调用者使用，Spring为此专门提供引用JNDI资源的JndiObjectFactoryBean类。
+    -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+    </bean>
+
+    <!-- mybatis文件配置，扫描所有mapper文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--<property name="typeAliasesPackage" value="com.lulu.expense.dao"/>-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--基于注解的事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- spring与mybatis整合配置，扫描所有dao,指定的映射器类是接口,接口方法可以用注解来指定 SQL 语句,但是 MyBatis 的映射器 XML 文件也可以用。 -->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--<property name="basePackage" value="com.lulu.expense.dao"/>-->
+        <!--<property name="sqlSessionFactoryBeanName" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
 
 </beans>

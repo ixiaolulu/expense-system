@@ -1,5 +1,6 @@
 package com.lulu.expense.controller;
 
+import com.lulu.expense.model.ApiResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/expense",method = RequestMethod.GET)
 public class LiveController {
     @RequestMapping("/isLive")
-    public String isLive(){
-        return "/index.jsp";
+    public ApiResponse isLive(){
+        return ApiResponse.success("项目正在运行中...");
     }
 }

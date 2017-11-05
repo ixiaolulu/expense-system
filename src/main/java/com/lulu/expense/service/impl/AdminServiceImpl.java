@@ -2,6 +2,7 @@ package com.lulu.expense.service.impl;
 
 import com.lulu.expense.dao.AdminDao;
 import com.lulu.expense.model.ApiResponse;
+import com.lulu.expense.model.data.Admin;
 import com.lulu.expense.model.request.LoginRequest;
 import com.lulu.expense.service.AdminService;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,11 @@ public class AdminServiceImpl implements AdminService {
      * @param req
      */
     public ApiResponse checkLogin(LoginRequest req) {
+        Admin admin = adminDao.getByCode(req.getCode());
 
+        if(admin == null||!admin.getCode().equals(req.getCode())||!admin.getPassword().equals(req.getPassword())){
+            return ApiResponse.fail(2,"账号或密码不正确");
+        }
        return ApiResponse.success(null);
     }
 }

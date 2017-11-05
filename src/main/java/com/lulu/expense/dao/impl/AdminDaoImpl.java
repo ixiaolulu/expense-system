@@ -1,6 +1,7 @@
 package com.lulu.expense.dao.impl;
 
 import com.lulu.expense.dao.AdminDao;
+import com.lulu.expense.dao.BaseDao;
 import com.lulu.expense.model.data.Admin;
 import org.springframework.stereotype.Repository;
 
@@ -11,9 +12,15 @@ import org.springframework.stereotype.Repository;
  * @ModifiedBy:
  */
 @Repository
-public class AdminDaoImpl implements AdminDao {
+public class AdminDaoImpl extends BaseDao implements AdminDao {
 
-    public Admin getByCode() {
-        return null;
+    /**
+     * 通过code获取Admin信息
+     *
+     * @param code
+     * @return
+     */
+    public Admin getByCode(String code) {
+        return sqlSessionTemplate.selectOne("admin.getByCode", code);
     }
 }

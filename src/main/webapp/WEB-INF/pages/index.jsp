@@ -1,9 +1,9 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>达内－NetCTOSS</title>
-        <link type="text/css" rel="stylesheet" media="all" href=expense/styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="expense/styles/global_color.css" />
+        <title>资费管理系统</title>
+        <link type="text/css" rel="stylesheet" media="all" href="/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/styles/global_color.css" />
     </head>
     <body class="index">
         <!--导航区域开始-->
