@@ -9,11 +9,15 @@ import org.springframework.stereotype.Repository;
  * @Date: 2017/11/4 20:09
  * @ModifiedBy:
  */
-public interface AdminDao{
+@Repository
+public class AdminDao extends BaseDao{
     /**
-     * 通过code获取管理员信息
+     * 通过code获取Admin信息
      *
+     * @param code
      * @return
      */
-    Admin getByCode(String code);
+    public Admin getByCode(String code) {
+        return readSqlSessionTemplate.selectOne("admin.getByCode", code);
+    }
 }

@@ -29,34 +29,58 @@
     4，JNDI数据源JndiObjectFactoryBean， 如果应用配置在高性能的应用服务器（如WebLogic或Websphere,tomcat等）上，我们可能更希望使用应用服务器本身提供的数据源。应用服务器的数据源
     使用JNDI开放调用者使用，Spring为此专门提供引用JNDI资源的JndiObjectFactoryBean类。
     -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${driver}" />
-        <property name="url" value="${url}" />
-        <property name="username" value="${username}" />
-        <property name="password" value="${password}" />
+    <bean id="readDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${read.driver}" />
+        <property name="url" value="${read.url}" />
+        <property name="username" value="${read.username}" />
+        <property name="password" value="${read.password}" />
+        <property name="initialSize" value="${read.initialSize}"/>
+        <property name="maxActive" value="${read.maxActive}"/>
+        <property name="minIdle" value="${read.minIdle}"/>
+        <property name="maxWait" value="${read.maxWait}"/>
+    </bean>
+
+    <bean id="writeDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${write.driver}" />
+        <property name="url" value="${write.url}" />
+        <property name="username" value="${write.username}" />
+        <property name="password" value="${write.password}" />
+        <property name="initialSize" value="${write.initialSize}"/>
+        <property name="maxActive" value="${write.maxActive}"/>
+        <property name="minIdle" value="${write.minIdle}"/>
+        <property name="maxWait" value="${write.maxWait}"/>
     </bean>
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <!--<property name="typeAliasesPackage" value="com.lulu.expense.dao"/>-->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    <bean id="readSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg>
+            <bean class = "org.mybatis.spring.SqlSessionFactoryBean">
+                <property name="dataSource" ref="readDataSource"/>
+                <property name="configLocation" value="classpath:mybatis-config.xml"/>
+                <property name="typeAliasesPackage" value="com.lulu.expense.model.data"/>
+                <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+            </bean>
+        </constructor-arg>
     </bean>
 
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-       <constructor-arg ref="sqlSessionFactory"/>
+    <bean id="writeSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg>
+            <bean class = "org.mybatis.spring.SqlSessionFactoryBean">
+                <property name="dataSource" ref="writeDataSource"/>
+                <property name="configLocation" value="classpath:mybatis-config.xml"/>
+                <property name="typeAliasesPackage" value="com.lulu.expense.model.data"/>
+                <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+            </bean>
+        </constructor-arg>
     </bean>
 
     <!--基于注解的事务管理-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="writeDataSource"/>
     </bean>
 
-    <!-- spring与mybatis整合配置，扫描所有dao,指定的映射器类是接口,接口方法可以用注解来指定 SQL 语句,但是 MyBatis 的映射器 XML 文件也可以用。 -->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.lulu.expense.dao"/>-->
-        <!--<property name="sqlSessionFactoryBeanName" ref="sqlSessionFactory"/>-->
-    <!--</bean>-->
+    <!-- 事务在service的实现层使用注解定义，这里使用基于接口的代理实现 proxy-target-class=false 或者 默认不配置 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
 
 </beans>

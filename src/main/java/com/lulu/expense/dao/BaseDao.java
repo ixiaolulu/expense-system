@@ -11,6 +11,10 @@ import javax.annotation.Resource;
  * @ModifiedBy:
  */
 public class BaseDao {
+
     @Resource
-    public SqlSessionTemplate sqlSessionTemplate;
+    public SqlSessionTemplate readSqlSessionTemplate;
+
+    @Resource
+    public SqlSessionTemplate writeSqlSessionTemplate;
 }
