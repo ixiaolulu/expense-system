@@ -1,4 +1,4 @@
-package com.lulu.expense.model;
+package com.lulu.expense.model.response;
 
 import com.lulu.expense.constant.Constant;
 

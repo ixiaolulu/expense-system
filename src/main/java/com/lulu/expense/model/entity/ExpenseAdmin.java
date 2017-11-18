@@ -1,6 +1,5 @@
-package com.lulu.expense.model.data;
+package com.lulu.expense.model.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +8,7 @@ import java.util.Date;
  * @Date: 2017/11/4 19:52
  * @ModifiedBy:
  */
-public class Admin implements Serializable{
+public class ExpenseAdmin extends BaseModel {
 
     /**
      * 编号
@@ -42,6 +41,11 @@ public class Admin implements Serializable{
     private String email;
 
     /**
+     * 授权日期
+     */
+    private Date enrollDate;
+
+    /**
      * 创建时间
      */
     private Date timeCreated;
@@ -50,6 +54,7 @@ public class Admin implements Serializable{
      * 修改时间
      */
     private Date timeModified;
+
 
     public Integer getId() {
         return id;
@@ -97,6 +102,14 @@ public class Admin implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getEnrollDate() {
+        return enrollDate;
+    }
+
+    public void setEnrollDate(Date enrollDate) {
+        this.enrollDate = enrollDate;
     }
 
     public Date getTimeCreated() {

@@ -1,6 +1,6 @@
 package com.lulu.expense.controller;
 
-import com.lulu.expense.model.ApiResponse;
+import com.lulu.expense.model.response.ApiResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
