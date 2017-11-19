@@ -3,6 +3,9 @@ package com.lulu.expense.dao;
 import com.lulu.expense.model.entity.ExpenseAdmin;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @Author: Milo Ting
  * @Description:
@@ -20,4 +23,26 @@ public class ExpenseAdminDao extends BaseDao {
     public ExpenseAdmin getByCode(String code) {
         return readSqlSessionTemplate.selectOne("ExpenseAdminDao.getByCode", code);
     }
+
+    /**
+     * 总数
+     *
+     * @param paramMap
+     * @return
+     */
+    public int selectListPageCount(Map<String, Object> paramMap) {
+        return readSqlSessionTemplate.selectOne("ExpenseAdminDao.selectListPageCount", paramMap);
+    }
+
+
+    /**
+     * 列表
+     *
+     * @param paramMap
+     * @return
+     */
+    public List<Map<String, Object>> selectListPage(Map<String, Object> paramMap) {
+        return readSqlSessionTemplate.selectList("ExpenseAdminDao.selectListPage", paramMap);
+    }
+
 }

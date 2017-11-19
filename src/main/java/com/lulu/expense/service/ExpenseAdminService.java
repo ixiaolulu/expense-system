@@ -3,9 +3,11 @@ package com.lulu.expense.service;
 import com.lulu.expense.model.request.FindAdminInfoRequest;
 import com.lulu.expense.model.request.LoginRequest;
 import com.lulu.expense.model.response.AdminInfo;
+import com.lulu.expense.model.response.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: Milo Ting
@@ -28,8 +30,7 @@ public interface ExpenseAdminService {
      * 获取管理员列表
      *
      * @param req
-     * @param request
      * @return
      */
-    List<AdminInfo> findAdminInfoList(FindAdminInfoRequest req, HttpServletRequest request);
+    Pagination<Map<String, Object>> findAdminInfoList(FindAdminInfoRequest req);
 }

@@ -1,13 +1,19 @@
-package com.lulu.expense.controller;
+package com.lulu.expense.web.controller;
 
+import com.lulu.expense.model.request.FindAdminInfoRequest;
 import com.lulu.expense.model.request.LoginRequest;
+import com.lulu.expense.model.response.Pagination;
 import com.lulu.expense.service.ExpenseAdminService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -38,8 +44,10 @@ public class ExpenseAdminController {
      *
      * @return
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list() {
+    @RequestMapping(value = "/list")
+    public String list(FindAdminInfoRequest request, ModelMap map) {
+        Pagination<Map<String, Object>> pagination = expenseAdminService.findAdminInfoList(request);
+        map.addAttribute("pagination", pagination);
         return "admin/list";
     }
 

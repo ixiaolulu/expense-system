@@ -11,11 +11,6 @@ import java.util.Date;
 public class ExpenseAdmin extends BaseModel {
 
     /**
-     * 编号
-     */
-    private Integer id;
-
-    /**
      * 登录码
      */
     private String code;
@@ -54,15 +49,6 @@ public class ExpenseAdmin extends BaseModel {
      * 修改时间
      */
     private Date timeModified;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return code;

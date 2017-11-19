@@ -12,8 +12,6 @@
     <title>资费管理系统</title>
     <link type="text/css" rel="stylesheet" media="all" href="/styles/global.css"/>
     <link type="text/css" rel="stylesheet" media="all" href="/styles/global_color.css"/>
-    s
-    <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
 
         function checkLoginInput() {
@@ -55,10 +53,10 @@
         $(function () {
             $("#login").click(function () {
                 clearErrorMsg();
-//                    var flag = checkLoginInput();
-//                    if(!flag){
-//                        return;
-//                    }
+                var flag = checkLoginInput();
+                if (!flag) {
+                    return;
+                }
                 $("#login_form").submit();
 //                    $.ajax({
 //                        url:"/admin/login",

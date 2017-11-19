@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExpenseRoleDao">
+
+    <resultMap id="BaseResultMap" type="com.lulu.expense.model.entity.ExpenseRole">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="timeCreated" column="timeCreated"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,timeCreated
+    </sql>
+
+    <sql id="Select_Column_List">
+        t1.id,
+        t1.name,
+        DATE_FORMAT(t1.timeCreated,'%Y-%m-%d %H:%i:%s') as timeCreated,
+        t1.moduleId
+    </sql>
+
+
+    <select id="selectListPageCount" parameterType="HashMap" resultType="int">
+        SELECT
+        COUNT(0)
+        FROM
+        (
+        SELECT
+        t1.*, group_concat(emi. NAME SEPARATOR '、') moduleNameStr
+        FROM
+        ExpenseModuleInfo emi
+        RIGHT JOIN (
+        SELECT
+        er.*, erm.moduleId
+        FROM
+        ExpenseRole er
+        LEFT JOIN ExpenseRoleModule erm ON er.id = erm.roleId
+        ) t1 ON emi.id = t1.moduleId
+        GROUP BY
+        t1.id
+        ) t2
+    </select>
+
+    <select id="selectListPage" parameterType="HashMap" resultType="HashMap">
+        SELECT
+        <include refid="Select_Column_List"/>,
+        group_concat(emi. NAME SEPARATOR '、') moduleNameStr
+        FROM
+        ExpenseModuleInfo emi
+        RIGHT JOIN (
+        SELECT
+        er.*, erm.moduleId
+        FROM
+        ExpenseRole er
+        LEFT JOIN ExpenseRoleModule erm ON er.id = erm.roleId
+        ) t1 ON emi.id = t1.moduleId
+        GROUP BY t1.id
+        LIMIT #{offset},#{rowsPerPage}
+    </select>
+
+
+</mapper>

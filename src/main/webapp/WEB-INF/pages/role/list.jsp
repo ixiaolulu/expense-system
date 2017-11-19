@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>达内－NetCTOSS</title>
+        <title>资费管理系统</title>
+        <%@ include file="/base.jsp" %>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
@@ -10,6 +11,14 @@
                 var r = window.confirm("确定要删除此角色吗？");
                 document.getElementById("operate_result_info").style.display = "block";
             }
+
+            //查询
+            $(function () {
+                $("#pages a").click(function () {
+                    $("#pages a").removeClass("current_page");
+                    $(this).addClass('current_page');
+                });
+            });
         </script>
     </head>
     <body>
@@ -23,8 +32,8 @@
         <div id="navi">                        
             <ul id="menu">
                 <li><a href="../index.html" class="index_off"></a></li>
-                <li><a href="../role/role_list.html" class="role_on"></a></li>
-                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="/expense/role/list" class="role_off"></a></li>
+                <li><a href="/expense/admin/list" class="admin_on"></a></li>
                 <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
                 <li><a href="../account/account_list.html" class="account_off"></a></li>
                 <li><a href="../service/service_list.html" class="service_off"></a></li>
@@ -37,7 +46,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form id="queryList_form" action="/expense/role/list" method="post">
                 <!--查询-->
                 <div class="search_add">
                     <input type="button" value="增加" class="btn_add" onclick="location.href='role_add.html';" />
@@ -53,45 +62,25 @@
                         <tr>                            
                             <th>角色 ID</th>
                             <th>角色名称</th>
-                            <th class="width600">拥有的权限</th>
+                            <th class="width500">拥有的权限</th>
+                            <th>创建时间</th>
                             <th class="td_modi"></th>
-                        </tr>                      
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>角色管理、管理员管理、资费管理、账务账号、业务账号、账单、报表</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='role_modi.html';"/>
-                                <input type="button" value="删除" class="btn_delete" onclick="deleteRole();" />
-                            </td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>超级管理员、账单管理员</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>超级管理员、账单管理员</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>超级管理员、账单管理员</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
+                        <c:forEach items="${pagination.dataList}" var="roleInfo" varStatus="status">
+
+                            <tr>
+                                <td>${roleInfo.id}</td>
+                                <td>${roleInfo.name}</td>
+                                <td>${roleInfo.moduleNameStr}</td>
+                                <td>${roleInfo.timeCreated}</td>
+                                <td>
+                                    <input type="button" value="修改" class="btn_modify"
+                                           onclick="location.href='role_modi.html';"/>
+                                    <input type="button" value="删除" class="btn_delete" onclick="deleteRole();"/>
+                                </td>
+                            </tr>
+
+                        </c:forEach>
                     </table>
                 </div> 
                 <!--分页-->

@@ -31,7 +31,7 @@ public class Constant {
     /**--------------code----------------------**/
     public static int SUCCESS = 0;
     /**--------------msg----------------------**/
-    public static String SUCCESS_MSG = "操作成功";
+    public static String SUCCESS_MSG = "OK";
 
 
 

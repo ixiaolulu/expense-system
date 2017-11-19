@@ -10,7 +10,7 @@
         <div id="index_navi">
             <ul id="menu">
                 <li><a href="index.jsp  " class="index_on"></a></li>
-                <li><a href="role/role_list.html" class="role_off"></a></li>
+                <li><a href="/expense/role/list" class="role_off"></a></li>
                 <li><a href="/expense/admin/list" class="admin_off"></a></li>
                 <li><a href="fee/fee_list.html" class="fee_off"></a></li>
                 <li><a href="account/account_list.html" class="account_off"></a></li>

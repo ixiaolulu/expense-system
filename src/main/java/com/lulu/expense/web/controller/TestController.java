@@ -1,4 +1,4 @@
-package com.lulu.expense.controller;
+package com.lulu.expense.web.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

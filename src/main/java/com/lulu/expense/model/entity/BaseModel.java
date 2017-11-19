@@ -9,5 +9,16 @@ import java.io.Serializable;
  * @ModifiedBy:
  */
 public class BaseModel implements Serializable {
+    /**
+     * 编号
+     */
+    private Integer id;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

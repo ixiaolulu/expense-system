@@ -1,4 +1,4 @@
-package com.lulu.expense.controller;
+package com.lulu.expense.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

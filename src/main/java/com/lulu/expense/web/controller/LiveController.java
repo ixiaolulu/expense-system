@@ -1,4 +1,4 @@
-package com.lulu.expense.controller;
+package com.lulu.expense.web.controller;
 
 import com.lulu.expense.model.response.ApiResponse;
 import org.springframework.stereotype.Controller;

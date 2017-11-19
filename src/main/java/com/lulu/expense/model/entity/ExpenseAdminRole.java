@@ -9,10 +9,6 @@ import java.util.Date;
  * @ModifiedBy:
  */
 public class ExpenseAdminRole extends BaseModel {
-    /**
-     * id
-     */
-    private Integer id;
 
     /**
      * 管理员id
@@ -28,14 +24,6 @@ public class ExpenseAdminRole extends BaseModel {
      * 创建对象
      */
     private Date timeCreated;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getAdminId() {
         return adminId;

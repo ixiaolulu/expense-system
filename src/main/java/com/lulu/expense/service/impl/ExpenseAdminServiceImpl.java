@@ -6,6 +6,7 @@ import com.lulu.expense.model.entity.ExpenseAdmin;
 import com.lulu.expense.model.request.FindAdminInfoRequest;
 import com.lulu.expense.model.request.LoginRequest;
 import com.lulu.expense.model.response.AdminInfo;
+import com.lulu.expense.model.response.Pagination;
 import com.lulu.expense.service.ExpenseAdminService;
 import com.lulu.expense.utils.HttpServletUtils;
 import com.lulu.expense.utils.StringUtils;
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: Milo Ting
@@ -75,10 +78,18 @@ public class ExpenseAdminServiceImpl implements ExpenseAdminService {
      * 获取管理员列表
      *
      * @param req
-     * @param request
      * @return
      */
-    public List<AdminInfo> findAdminInfoList(FindAdminInfoRequest req, HttpServletRequest request) {
-        return null;
+    public Pagination<Map<String, Object>> findAdminInfoList(FindAdminInfoRequest req) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("roleName", req.getRoleName());
+        paramMap.put("offset", req.getOffset());
+        paramMap.put("rowsPerPage", req.getRowsPerPage());
+        int totalCnt = expenseAdminDao.selectListPageCount(paramMap);
+        List<Map<String, Object>> dataList = expenseAdminDao.selectListPage(paramMap);
+        Pagination<Map<String, Object>> pagination = new Pagination<Map<String, Object>>();
+        pagination.setTotalCnt(totalCnt);
+        pagination.setDataList(dataList);
+        return pagination;
     }
 }
