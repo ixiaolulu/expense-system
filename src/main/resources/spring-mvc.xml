@@ -11,8 +11,8 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
        default-lazy-init="true">
 
-    <!--开启注解 @Controller @Service @Component-->
-    <context:component-scan base-package="com.lulu.expense"/>
+    <!--开启注解 @Controller  @Component-->
+    <context:component-scan base-package="com.lulu.expense.web"/>
 
     <!-- 当配置了<mvc:annotation-driven/>后，
     会自动加载org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping和

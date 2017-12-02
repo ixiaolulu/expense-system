@@ -19,6 +19,23 @@
         t1.moduleId
     </sql>
 
+    <insert id="add" parameterType="com.lulu.expense.model.entity.ExpenseRole" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO ExpenseRole(
+      name,
+      timeCreated
+      )
+      VALUES
+      (
+      #{name},
+      #{timeCreated}
+      )
+    </insert>
+
+    <select id="getByName" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ExpenseRole WHERE name = #{name}
+    </select>
 
     <select id="selectListPageCount" parameterType="HashMap" resultType="int">
         SELECT
@@ -28,7 +45,7 @@
         SELECT
         t1.*, group_concat(emi. NAME SEPARATOR '、') moduleNameStr
         FROM
-        ExpenseModuleInfo emi
+        ExpenseModule emi
         RIGHT JOIN (
         SELECT
         er.*, erm.moduleId
@@ -46,7 +63,7 @@
         <include refid="Select_Column_List"/>,
         group_concat(emi. NAME SEPARATOR '、') moduleNameStr
         FROM
-        ExpenseModuleInfo emi
+        ExpenseModule emi
         RIGHT JOIN (
         SELECT
         er.*, erm.moduleId

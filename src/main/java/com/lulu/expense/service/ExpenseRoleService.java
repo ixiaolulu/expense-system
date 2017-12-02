@@ -1,10 +1,10 @@
 package com.lulu.expense.service;
 
-import com.lulu.expense.model.entity.ExpenseRole;
+import com.lulu.expense.model.request.AddRoleAndRoleModuleRequest;
 import com.lulu.expense.model.request.FindRoleRequest;
+import com.lulu.expense.model.response.ApiResponse;
 import com.lulu.expense.model.response.Pagination;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,4 +20,11 @@ public interface ExpenseRoleService {
      * @return
      */
     Pagination<Map<String, Object>> findRoleList(FindRoleRequest request);
+
+    /**
+     * @param request
+     * @return
+     */
+    ApiResponse saveRoleAndRoleModule(AddRoleAndRoleModuleRequest request);
+
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExpenseRoleModuleDao">
+
+    <insert id="add" parameterType="com.lulu.expense.model.entity.ExpenseRoleModule" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO ExpenseRoleModule(
+        roleId,
+        moduleId,
+        timeCreated)
+        VALUES(
+        #{roleId},
+        #{moduleId},
+        #{timeCreated})
+    </insert>
+
+    <insert id="batchAdd" parameterType="java.util.List" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO ExpenseRoleModule(
+        roleId,
+        moduleId,
+        timeCreated)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.roleId},
+            #{item.moduleId},
+            #{item.timeCreated}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

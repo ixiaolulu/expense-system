@@ -4,8 +4,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>资费管理系统</title>
         <%@ include file="/base.jsp" %>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
             function deleteRole() {
                 var r = window.confirm("确定要删除此角色吗？");
@@ -32,8 +30,8 @@
         <div id="navi">                        
             <ul id="menu">
                 <li><a href="../index.html" class="index_off"></a></li>
-                <li><a href="/expense/role/list" class="role_off"></a></li>
-                <li><a href="/expense/admin/list" class="admin_on"></a></li>
+                <li><a href="/expense/role/list" class="role_on"></a></li>
+                <li><a href="/expense/admin/list" class="admin_off"></a></li>
                 <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
                 <li><a href="../account/account_list.html" class="account_off"></a></li>
                 <li><a href="../service/service_list.html" class="service_off"></a></li>
@@ -49,7 +47,7 @@
             <form id="queryList_form" action="/expense/role/list" method="post">
                 <!--查询-->
                 <div class="search_add">
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='role_add.html';" />
+                    <input type="button" value="增加" class="btn_add" onclick="location.href='/expense/role/add';"/>
                 </div>  
                 <!--删除的操作提示-->
                 <div id="operate_result_info" class="operate_success">

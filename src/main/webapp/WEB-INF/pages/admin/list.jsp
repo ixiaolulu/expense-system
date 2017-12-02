@@ -4,8 +4,6 @@
     <%@ include file="/base.jsp" %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>资费管理系统</title>
-    <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css"/>
-    <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css"/>
     <script language="javascript" type="text/javascript">
 
         //显示角色详细信息

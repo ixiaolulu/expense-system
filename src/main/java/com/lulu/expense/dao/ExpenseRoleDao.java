@@ -1,5 +1,6 @@
 package com.lulu.expense.dao;
 
+import com.lulu.expense.model.entity.ExpenseRole;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,14 @@ import java.util.Map;
 @Repository
 public class ExpenseRoleDao extends BaseDao {
 
+    public int add(ExpenseRole role) {
+        return writeSqlSessionTemplate.insert("ExpenseRoleDao.add", role);
+    }
 
+
+    public ExpenseRole getByName(String name) {
+        return writeSqlSessionTemplate.selectOne("ExpenseRoleDao.getByName", name);
+    }
     /**
      * 总数
      *

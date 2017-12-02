@@ -1,16 +1,9 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <head>
-        <%
-            String path = request.getContextPath();
-            String basePath = request.getScheme() + "://"
-                    + request.getServerName() + ":" + request.getServerPort()
-                    + path + "/";
-        %>
-        <base href="<%=basePath%>">
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>资费管理系统</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <%@ include file="/base.jsp" %>
         <script language="javascript" type="text/javascript">
             //保存成功的提示消息
             function showResult() {

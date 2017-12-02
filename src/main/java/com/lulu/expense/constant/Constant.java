@@ -28,8 +28,11 @@ public class Constant {
     public static final String VALIDATECODE_NOT_NULL_ERROR_MSG = "验证码不能为空";
     public static final String VALIDATECODE_ERROR_MSG = "验证码错误";
     public static final String CODEORPWD_ERROR_MSG = "账号或者密码错误";
+    public static final String ROLENAME_ALREADY_EXIST_ERROR_MSG = "保存失败，角色名称重复！";
+    public static final String SAVE_SUCCESS_MSG = "保存成功！";
     /**--------------code----------------------**/
-    public static int SUCCESS = 0;
+    public static final int SUCCESS = 0;
+    public static final int ROLENAME_ALREADY_EXIST_ERROR = 1;
     /**--------------msg----------------------**/
     public static String SUCCESS_MSG = "OK";
 
