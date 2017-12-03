@@ -39,7 +39,7 @@ public class ExpenseRoleServiceImpl implements ExpenseRoleService {
      */
     public Pagination<Map<String, Object>> findRoleList(FindRoleRequest req) {
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("offset", req.getOffset());
+        paramMap.put("offset", (req.getPage() - 1) * req.getRowsPerPage());
         paramMap.put("rowsPerPage", req.getRowsPerPage());
         int totalCnt = expenseRoleDao.selectListPageCount(paramMap);
         List<Map<String, Object>> dataList = expenseRoleDao.selectListPage(paramMap);

@@ -45,6 +45,18 @@ public class ExpenseRoleController {
         return "role/list";
     }
 
+    /**
+     * 角色列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "/queryList")
+    public @ResponseBody
+    ApiResponse queryList(FindRoleRequest request) {
+        Pagination<Map<String, Object>> pagination = expenseRoleService.findRoleList(request);
+        return ApiResponse.success(pagination);
+    }
+
     @RequestMapping("/add")
     public String add(HttpServletRequest request, ModelMap modelMap) {
         List<ExpenseModule> moduleList = expenseModuleService.getAllExpenseModules();

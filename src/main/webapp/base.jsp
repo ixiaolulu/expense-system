@@ -9,8 +9,10 @@
 <html>
 <head>
     <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.pagination.min.js"></script>
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css"/>
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css"/>
+    <link type="text/css" rel="stylesheet" media="all" href="../styles/jquery.pagination.css"/>
 </head>
 <body>
 

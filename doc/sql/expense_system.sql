@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2017-11-19 17:09:49
+Date: 2017-12-03 13:11:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -87,10 +87,10 @@ CREATE TABLE `ExpenseCost` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for ExpenseModuleInfo
+-- Table structure for ExpenseModule
 -- ----------------------------
-DROP TABLE IF EXISTS `ExpenseModuleInfo`;
-CREATE TABLE `ExpenseModuleInfo` (
+DROP TABLE IF EXISTS `ExpenseModule`;
+CREATE TABLE `ExpenseModule` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '模块编号',
   `name` varchar(30) NOT NULL COMMENT '模块名称',
   `timeCreated` datetime DEFAULT NULL COMMENT '创建时间',
@@ -98,15 +98,15 @@ CREATE TABLE `ExpenseModuleInfo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='模块表';
 
 -- ----------------------------
--- Records of ExpenseModuleInfo
+-- Records of ExpenseModule
 -- ----------------------------
-INSERT INTO `ExpenseModuleInfo` VALUES ('1', '角色管理', null);
-INSERT INTO `ExpenseModuleInfo` VALUES ('2', '管理员', null);
-INSERT INTO `ExpenseModuleInfo` VALUES ('3', '资费管理', null);
-INSERT INTO `ExpenseModuleInfo` VALUES ('4', '账务账号', null);
-INSERT INTO `ExpenseModuleInfo` VALUES ('5', '业务账号', null);
-INSERT INTO `ExpenseModuleInfo` VALUES ('6', '账单管理', null);
-INSERT INTO `ExpenseModuleInfo` VALUES ('7', '报表', null);
+INSERT INTO `ExpenseModule` VALUES ('1', '角色管理', null);
+INSERT INTO `ExpenseModule` VALUES ('2', '管理员', null);
+INSERT INTO `ExpenseModule` VALUES ('3', '资费管理', null);
+INSERT INTO `ExpenseModule` VALUES ('4', '账务账号', null);
+INSERT INTO `ExpenseModule` VALUES ('5', '业务账号', null);
+INSERT INTO `ExpenseModule` VALUES ('6', '账单管理', null);
+INSERT INTO `ExpenseModule` VALUES ('7', '报表', null);
 
 -- ----------------------------
 -- Table structure for ExpenseRole
@@ -116,8 +116,9 @@ CREATE TABLE `ExpenseRole` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
   `name` varchar(30) NOT NULL COMMENT '角色名称',
   `timeCreated` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_name` (`name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ExpenseRole
@@ -128,6 +129,13 @@ INSERT INTO `ExpenseRole` VALUES ('3', '经理', '2017-11-15 17:04:55');
 INSERT INTO `ExpenseRole` VALUES ('4', 'aaa', '2017-11-01 17:04:58');
 INSERT INTO `ExpenseRole` VALUES ('5', 'bbb', '2017-11-01 17:05:02');
 INSERT INTO `ExpenseRole` VALUES ('6', 'ccc', '2017-10-30 17:05:05');
+INSERT INTO `ExpenseRole` VALUES ('7', '测试', '2017-12-02 14:58:25');
+INSERT INTO `ExpenseRole` VALUES ('9', '测试1', '2017-12-02 15:24:57');
+INSERT INTO `ExpenseRole` VALUES ('10', '测试3', '2017-12-02 15:29:56');
+INSERT INTO `ExpenseRole` VALUES ('11', '测试2', '2017-12-02 15:32:06');
+INSERT INTO `ExpenseRole` VALUES ('12', '123333', '2017-12-02 15:53:44');
+INSERT INTO `ExpenseRole` VALUES ('13', '3232323', '2017-12-02 16:00:11');
+INSERT INTO `ExpenseRole` VALUES ('20', '老板', '2017-12-02 16:20:09');
 
 -- ----------------------------
 -- Table structure for ExpenseRoleModule
@@ -140,7 +148,7 @@ CREATE TABLE `ExpenseRoleModule` (
   `timeCreated` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `role_module_pk` (`roleId`,`moduleId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='角色模块关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='角色模块关联表';
 
 -- ----------------------------
 -- Records of ExpenseRoleModule
@@ -152,3 +160,16 @@ INSERT INTO `ExpenseRoleModule` VALUES ('4', '200', '4', '2017-11-18 20:34:54');
 INSERT INTO `ExpenseRoleModule` VALUES ('5', '200', '5', '2017-11-18 20:34:54');
 INSERT INTO `ExpenseRoleModule` VALUES ('6', '200', '6', '2017-11-18 20:34:54');
 INSERT INTO `ExpenseRoleModule` VALUES ('7', '300', '7', '2017-11-18 20:34:54');
+INSERT INTO `ExpenseRoleModule` VALUES ('8', '7', '1', '2017-12-02 14:58:56');
+INSERT INTO `ExpenseRoleModule` VALUES ('9', '7', '4', '2017-12-02 14:58:58');
+INSERT INTO `ExpenseRoleModule` VALUES ('10', '7', '7', '2017-12-02 14:58:59');
+INSERT INTO `ExpenseRoleModule` VALUES ('11', '9', '2', '2017-12-02 15:25:01');
+INSERT INTO `ExpenseRoleModule` VALUES ('12', '9', '3', '2017-12-02 15:25:03');
+INSERT INTO `ExpenseRoleModule` VALUES ('13', '9', '5', '2017-12-02 15:25:06');
+INSERT INTO `ExpenseRoleModule` VALUES ('14', '9', '6', '2017-12-02 15:25:08');
+INSERT INTO `ExpenseRoleModule` VALUES ('15', '10', '2', '2017-12-02 15:29:57');
+INSERT INTO `ExpenseRoleModule` VALUES ('16', '10', '7', '2017-12-02 15:29:57');
+INSERT INTO `ExpenseRoleModule` VALUES ('17', '20', '2', '2017-12-02 16:20:09');
+INSERT INTO `ExpenseRoleModule` VALUES ('18', '20', '3', '2017-12-02 16:20:09');
+INSERT INTO `ExpenseRoleModule` VALUES ('19', '20', '5', '2017-12-02 16:20:09');
+INSERT INTO `ExpenseRoleModule` VALUES ('20', '20', '6', '2017-12-02 16:20:09');
