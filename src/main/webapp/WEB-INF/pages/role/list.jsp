@@ -1,4 +1,5 @@
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -37,7 +38,6 @@
                         data: $("#queryList_form").serialize(),
                         dataType: "json",
                         success: function (result) {
-                            var roleInfo1 = result.data.dataList[0];
                             for (var i = 0; i < result.data.dataList.length; i++) {
                                 var roleInfo = result.data.dataList[i];
                                 var tr_ = "<tr>" +
@@ -118,7 +118,9 @@
                         <td>${roleInfo.id}</td>
                         <td>${roleInfo.name}</td>
                         <td>${roleInfo.moduleNameStr}</td>
-                        <td>${roleInfo.timeCreated}</td>
+                        <td>
+                            <fmt:formatDate value="${roleInfo.timeCreated}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        </td>
                         <td>
                             <input type="button" value="修改" class="btn_modify"
                                    onclick="location.href='role_modi.html';"/>

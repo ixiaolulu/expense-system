@@ -8,6 +8,7 @@ import com.lulu.expense.model.entity.ExpenseRoleModule;
 import com.lulu.expense.model.request.AddRoleAndRoleModuleRequest;
 import com.lulu.expense.model.request.FindRoleRequest;
 import com.lulu.expense.model.response.ApiResponse;
+import com.lulu.expense.model.response.FindRoleResponse;
 import com.lulu.expense.model.response.Pagination;
 import com.lulu.expense.service.ExpenseRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,13 @@ public class ExpenseRoleServiceImpl implements ExpenseRoleService {
      *
      * @return
      */
-    public Pagination<Map<String, Object>> findRoleList(FindRoleRequest req) {
+    public Pagination<FindRoleResponse> findRoleList(FindRoleRequest req) {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("offset", (req.getPage() - 1) * req.getRowsPerPage());
         paramMap.put("rowsPerPage", req.getRowsPerPage());
         int totalCnt = expenseRoleDao.selectListPageCount(paramMap);
-        List<Map<String, Object>> dataList = expenseRoleDao.selectListPage(paramMap);
-        Pagination<Map<String, Object>> pagination = new Pagination<Map<String, Object>>();
+        List<FindRoleResponse> dataList = expenseRoleDao.selectListPage(paramMap);
+        Pagination<FindRoleResponse> pagination = new Pagination<FindRoleResponse>();
         pagination.setTotalCnt(totalCnt);
         pagination.setDataList(dataList);
         return pagination;

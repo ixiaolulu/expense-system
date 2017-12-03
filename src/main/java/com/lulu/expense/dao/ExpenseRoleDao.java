@@ -1,6 +1,7 @@
 package com.lulu.expense.dao;
 
 import com.lulu.expense.model.entity.ExpenseRole;
+import com.lulu.expense.model.response.FindRoleResponse;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class ExpenseRoleDao extends BaseDao {
      * @param paramMap
      * @return
      */
-    public List<Map<String, Object>> selectListPage(Map<String, Object> paramMap) {
+    public List<FindRoleResponse> selectListPage(Map<String, Object> paramMap) {
         return readSqlSessionTemplate.selectList("ExpenseRoleDao.selectListPage", paramMap);
     }
 

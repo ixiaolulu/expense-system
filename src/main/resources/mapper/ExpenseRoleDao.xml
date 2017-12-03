@@ -15,7 +15,7 @@
     <sql id="Select_Column_List">
         t1.id,
         t1.name,
-        DATE_FORMAT(t1.timeCreated,'%Y-%m-%d %H:%i:%s') as timeCreated,
+        t1.timeCreated,
         t1.moduleId
     </sql>
 
@@ -58,7 +58,7 @@
         ) t2
     </select>
 
-    <select id="selectListPage" parameterType="HashMap" resultType="HashMap">
+    <select id="selectListPage" parameterType="HashMap" resultType="com.lulu.expense.model.response.FindRoleResponse">
         SELECT
         <include refid="Select_Column_List"/>,
         group_concat(emi. NAME SEPARATOR '、') moduleNameStr

@@ -112,7 +112,8 @@
         </div>
         <div class="button_info clearfix">
             <input type="button" value="保存" class="btn_save" onclick="showResult();"/>
-            <input type="button" value="返回" class="btn_save" onclick="history.go(-1)"/>
+            <input type="button" value="返回" class="btn_save"
+                   onclick="javascript:window.location.href='/expense/role/list'"/>
         </div>
     </form>
 </div>

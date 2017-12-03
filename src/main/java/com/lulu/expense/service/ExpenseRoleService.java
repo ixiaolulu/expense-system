@@ -3,6 +3,7 @@ package com.lulu.expense.service;
 import com.lulu.expense.model.request.AddRoleAndRoleModuleRequest;
 import com.lulu.expense.model.request.FindRoleRequest;
 import com.lulu.expense.model.response.ApiResponse;
+import com.lulu.expense.model.response.FindRoleResponse;
 import com.lulu.expense.model.response.Pagination;
 
 import java.util.Map;
@@ -19,7 +20,7 @@ public interface ExpenseRoleService {
      *
      * @return
      */
-    Pagination<Map<String, Object>> findRoleList(FindRoleRequest request);
+    Pagination<FindRoleResponse> findRoleList(FindRoleRequest request);
 
     /**
      * @param request

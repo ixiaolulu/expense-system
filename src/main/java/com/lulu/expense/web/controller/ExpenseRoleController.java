@@ -4,6 +4,7 @@ import com.lulu.expense.model.entity.ExpenseModule;
 import com.lulu.expense.model.request.AddRoleAndRoleModuleRequest;
 import com.lulu.expense.model.request.FindRoleRequest;
 import com.lulu.expense.model.response.ApiResponse;
+import com.lulu.expense.model.response.FindRoleResponse;
 import com.lulu.expense.model.response.Pagination;
 import com.lulu.expense.service.ExpenseModuleService;
 import com.lulu.expense.service.ExpenseRoleService;
@@ -40,20 +41,20 @@ public class ExpenseRoleController {
      */
     @RequestMapping(value = "/list")
     public String list(FindRoleRequest request, ModelMap map) {
-        Pagination<Map<String, Object>> pagination = expenseRoleService.findRoleList(request);
+        Pagination<FindRoleResponse> pagination = expenseRoleService.findRoleList(request);
         map.addAttribute("pagination", pagination);
         return "role/list";
     }
 
     /**
-     * 角色列表
+     * 查询角色列表
      *
      * @return
      */
     @RequestMapping(value = "/queryList")
     public @ResponseBody
     ApiResponse queryList(FindRoleRequest request) {
-        Pagination<Map<String, Object>> pagination = expenseRoleService.findRoleList(request);
+        Pagination<FindRoleResponse> pagination = expenseRoleService.findRoleList(request);
         return ApiResponse.success(pagination);
     }
 
