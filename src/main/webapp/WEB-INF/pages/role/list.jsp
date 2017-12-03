@@ -105,11 +105,11 @@
             <table id="datalist">
                 <thead>
                 <tr>
-                    <th>角色 ID</th>
-                    <th>角色名称</th>
-                    <th class="width500">拥有的权限</th>
-                    <th>创建时间</th>
-                    <th class="td_modi"></th>
+                    <th style="width: 10%">角色 ID</th>
+                    <th style="width: 15%">角色名称</th>
+                    <th style="width: 40%">拥有的权限</th>
+                    <th style="width: 20%">创建时间</th>
+                    <th class="td_modi" style="width: 20%">操作</th>
                 </tr>
                 </thead>
                 <tbody>
